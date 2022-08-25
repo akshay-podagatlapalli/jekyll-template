@@ -14,7 +14,7 @@ background: '/img/posts/1.png'
 
 <p>What makes training these models so difficult? Understanding this requires taking a look under the hood of this model. It was first proposed in the landmark paper Generative Adversarial Nets <b>[5]</b>, and it presents a paradigm in which two fully-connected neural networks (NN) compete in a zero-sum game. One of the NNs, known as the generative network or the generator, will work to generate "false" data, while the other, known as the discriminative network or the discriminator, will work to evaluate and distinguish between the actual and fake data.</p>
 
-![Figure 1](\img\posts\fig1.png)
+![Figure 1](/img/posts/fig1.png)
 
 <p>Figure 1 depicts an abstract representation of how the generator (green line) would "dupe" the discriminator. The generator will train until its distribution resembles that of the real dataset (black dotted line). Given that the generator's job is to trick the discriminator until it can no longer distinguish between the two distributions, the discriminative distribution (blue dashed line) should flatten when the fake and actual distributions become indistinguishable.</p>
 
