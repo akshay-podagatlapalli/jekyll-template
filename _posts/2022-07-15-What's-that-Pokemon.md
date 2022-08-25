@@ -21,19 +21,19 @@ background: '/img/posts/1.png'
 <p>The model used to create the "fake" Pokémon in this case is known as the DCGAN, which stands for Deep Convolutional Generative Adversarial Network. This model, unlike the fully connected models suggested in <b>[5]</b> employs two convolutional neural networks (CNNs) for the generative and discriminative networks.
 The discriminator is a CNN model, whereas the generator is a deconvolutional neural network, which works inversely to a conventional CNN model. Where a CNN learns the spatial hierarchies of features within an image, moving from granular to high level details, the deconvolutional neural network or the generator learns to convert the latent space inputs into an actual image, generating meaning from noise, by regularly updating its weights by learning how the discriminator evaluates the images fed into its network. This is depicted in the figure below, which shows how data flows through a generative neural network.</p>
 
-![Figure 2](\img\posts\fig2.png)
+![Figure 2](/img/posts/fig2.png)
 
 <p>By providing a random seed, the generator begins to produce candidates for the discriminator from a latent space and maps it to the distribution of the dataset being used. A latent space is a representation of compressed data best explained in <b>[7]</b>. The space is initially populated randomly, but as the generator begins to understand a dataset’s distribution, the latent space would slowly start to be populated by features learned from the distribution. In contrast, the discriminator is trained on random datapoints drawn from the actual dataset. Both models will be trained until they achieve an acceptable level of accuracy, with each model undergoing backpropagation individually to enhance accuracy.</p>
 
 <p>This is further emphasized in Figure 3, where we see how the data produced by the generator is fed to the discriminator along with the real data.</p>
 
-![Figure 3](\img\posts\fig3.png)
+![Figure 3](/img/posts/fig3.png)
 
 <h2 class="section-heading">Data Collection and Processing</h2>
 
 <p>For this project, the Pokémon dataset was acquired via Kaggle. The original dataset is made up of 819 photos that were uploaded as .png files with a resolution of 256x256 pixels <b>[9]</b>. Because GANs are notoriously data hungry <b>[10]</b>, the size of this dataset was expanded 13 times prior to training by executing a data augmentation step.</p>
 
-![Figure 4](\img\posts\fig4.png)
+![Figure 4](/img/posts/fig4.png)
 
 <p>Despite expanding the dataset size, the results appeared to follow the same patterns as those seen  on Kaggle <b>[9]</b>. Normalizing the dataset by calculating the mean and standard deviation did not appear to improve the results and actually worsened them.</p>
 
@@ -107,60 +107,60 @@ The discriminator is a CNN model, whereas the generator is a deconvolutional neu
 
 <h3><i>RUN 1</i></h3>
 
-![Figure 5](\img\posts\fig5.gif)<br>
+![Figure 5](/img/posts/fig5.gif)<br>
 <p>
 <br>
 </p>
 
-![Figure 6](\img\posts\fig6.png)
+![Figure 6](/img/posts/fig6.png)
 
 <p>The Pokémon generated using this model have distinct shapes and colours, but they lack features such as faces, limbs, or appendages such as tails, wings, horns, fins, and so on that are commonly seen on Pokémon. The losses for both models appear to raise concerns about mode collapse and/or failure of convergence based on the loss plot. When the generator's loss begins to oscillate repeatedly with the same <b><a href="https://machinelearningmastery.com/wp-content/uploads/2019/07/Line-Plots-of-Loss-and-Accuracy-for-a-Generative-Adversarial-Network-with-Mode-Collapse.png">oscillation loss pattern</a></b>, mode collapse might have occurred. It also results in very little diversity among the samples generated. However, the outcomes are far from identical. While it is evident that the loss functions for the generator and discriminator do not converge, it would also lead to the results simply producing plain noise as in Figure 7 below.</p>
 
-![Figure 7](\img\posts\fig7.gif)
+![Figure 7](/img/posts/fig7.gif)
 
 <p>As a result, in addition to determining the best combination of hyperparameters, three additional runs were carried out to see whether similar patterns in the loss functions from Figure 6 maintained.</p>
 
 <h3><i>RUN 2</i></h3>
 
-![Figure 8](\img\posts\fig8.gif)<br>
+![Figure 8](/img/posts/fig8.gif)<br>
 <p>
 <br>
 </p>
 
-![Figure 9](\img\posts\fig9.png)
+![Figure 9](/img/posts/fig9.png)
 
 <h3><i>RUN 3</i></h3>
 
-![Figure 10](\img\posts\fig10.gif)<br>
+![Figure 10](/img/posts/fig10.gif)<br>
 <p>
 <br>
 </p>
 
-![Figure 11](\img\posts\fig11.png)<br>
+![Figure 11](/img/posts/fig11.png)<br>
 <p>
 <br>
 </p>
 
-![Figure 12](\img\posts\fig12.png)
+![Figure 12](/img/posts/fig12.png)
 
 <h3><i>RUN 4</i></h3>
 
-![Figure 13](\img\posts\fig13.gif)<br>
+![Figure 13](/img/posts/fig13.gif)<br>
 <p>
 <br>
 </p>
 
-![Figure 14](\img\posts\fig14.png)<br>
+![Figure 14](/img/posts/fig14.png)<br>
 <p>
 <br>
 </p>
 
-![Figure 15](\img\posts\fig15.png)<br>
+![Figure 15](/img/posts/fig15.png)<br>
 <p>
 <br>
 </p>
 
-![Figure 16](\img\posts\fig16.png)
+![Figure 16](/img/posts/fig16.png)
 
 <p>The loss functions for the generator and discriminator in Figures 9, 10, and 12 are observed to follow a general trend, seen in Figure 6. The results obtained throughout each of these runs are also identical to the ones shown in Figure 5. However, when examined through a forced creative lens, the results of the third run appear to show some form of limbs and appendages. Except for a couple in the last row of Figure 11, none of the results are truly legible. Because this model was trained for the longest time, 200 epochs, there is a significant likelihood that training the DCGAN model using the hyperparameters from RUN 3 for an even longer time will result in more defined outcomes.</p>
 
