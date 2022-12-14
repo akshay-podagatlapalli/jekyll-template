@@ -1,13 +1,12 @@
 ---
 layout: post
 title: "Who's That Pokémon?"
-subtitle: "A Generative Adversarial Network (GAN) that produces never before seen Pokémon"
+subtitle: "Training a Generative Adversarial Network (GAN) to produce never before seen Pokémon"
 # date: 2022-07-15 23:45:13 -0400
 background: '/img/posts/1.png'
 ---
 
-<h2 class="section-heading">Introduction</h2>>
-
+<h2>Introduction</h2>>
 <p>Generative Adversarial Networks (GANs) are a type of unsupervised neural networks that falls under the purview of deep learning models. They are commonly used in the image-processing domain to create art <b>[1]</b>, music <b>[2]</b>, or to improve the quality of low-resolution images/videos <b>[3]</b>. Recently, researchers at the University of Toronto used their applications in biochemistry and medical studies to generate 30,000 designs for six different new compounds that were found to imitate drug-like properties and target a protein involved in fibrosis <b>[4]</b>. I trained a GAN model to generate fake Pokémon.</p>
 
 <p>Because GANs are primarily taught to learn the distribution of any given dataset, the applications are really domain-independent. GANs will be able to replicate aspects of our environment given a well-defined dataset. The key constraint is the computing power required to train these models, which is further hampered by the fact that they are notoriously difficult to train, necessitating extra training time and computational power.</p>

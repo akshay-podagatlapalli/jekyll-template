@@ -1,13 +1,13 @@
 title:              Akshay Podagatlapalli
 email:              akshay.podagatlapalli@gmail.com
-description:        I Like Data!
+description:        Turning Numbers into Magic :) 
 author:             Akshay Podagatlapalli
 baseurl:            ""
 url:                "https://akshay-podagatlapalli.github.io"
 
 # Social Profiles
-github_username:    https://github.com/akshay-podagatlapalli
-linkedin_username:  https://www.linkedin.com/in/akshaypalli/
+github_username:    akshay-podagatlapalli
+linkedin_username:  akshaypalli
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
