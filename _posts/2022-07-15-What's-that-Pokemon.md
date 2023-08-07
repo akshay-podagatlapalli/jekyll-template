@@ -3,11 +3,11 @@ layout: post
 title: "Who's That Pokémon?"
 subtitle: "Training a Generative Adversarial Network (GAN) to produce never before seen Pokémon"
 # date: 2022-07-15 23:45:13 -0400
-background: '/img/posts/1.png'
+background: '../img/posts/1.png'
 ---
 
 <h2>Introduction</h2>>
-<p>Generative Adversarial Networks (GANs) are a type of unsupervised neural networks that falls under the purview of deep learning models. They are commonly used in the image-processing domain to create art [1](https://www.theverge.com/2019/3/5/18251267/ai-art-gans-mario-klingemann-auction-sothebys-technology), music <b>[2]</b>, or to improve the quality of low-resolution images/videos <b>[3]</b>. Recently, researchers at the University of Toronto used their applications in biochemistry and medical studies to generate 30,000 designs for six different new compounds that were found to imitate drug-like properties and target a protein involved in fibrosis <b>[4]</b>. I trained a GAN model to generate fake Pokémon.</p>
+<p>Generative Adversarial Networks (GANs) are a type of unsupervised neural networks that falls under the purview of deep learning models. They are commonly used in the image-processing domain to create art <b>[1]</b>, music <b>[2]</b>, or to improve the quality of low-resolution images/videos <b>[3]</b>. Recently, researchers at the University of Toronto used their applications in biochemistry and medical studies to generate 30,000 designs for six different new compounds that were found to imitate drug-like properties and target a protein involved in fibrosis <b>[4]</b>. I trained a GAN model to generate fake Pokémon.</p>
 
 <p>Because GANs are primarily taught to learn the distribution of any given dataset, the applications are really domain-independent. GANs will be able to replicate aspects of our environment given a well-defined dataset. The key constraint is the computing power required to train these models, which is further hampered by the fact that they are notoriously difficult to train, necessitating extra training time and computational power.</p>
 
@@ -167,15 +167,15 @@ The discriminator is a CNN model, whereas the generator is a deconvolutional neu
 
 <h2>References</h2>>
 
-[1]: https://www.theverge.com/2019/3/5/18251267/ai-art-gans-mario-klingemann-auction-sothebys-technology 
-[2]: https://ui.adsabs.harvard.edu/abs/2018arXiv180900219W/abstract
-[3]: https://www.economist.com/science-and-technology/2017/07/01/fake-news-you-aint-seen-nothing-yet
-[4]: https://www.wired.com/story/molecule-designed-ai-exhibits-druglike-qualities/
-[5]: https://arxiv.org/pdf/1406.2661.pdf
-[6]: https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d
-[7]: https://miro.medium.com/max/792/1*nz9t-D9xYNjxyw3xtzj3aQ.png
-[8]: https://www.kaggle.com/datasets/kvpratama/pokemon-images-dataset
-[9]: https://blogs.nvidia.com/blog/2020/12/07/neurips-research-limited-data-gan/
+    [1]: https://www.theverge.com/2019/3/5/18251267/ai-art-gans-mario-klingemann-auction-sothebys-technology
+    [2]: https://ui.adsabs.harvard.edu/abs/2018arXiv180900219W/abstract
+    [3]: https://www.economist.com/science-and-technology/2017/07/01/fake-news-you-aint-seen-nothing-yet
+    [4]: https://www.wired.com/story/molecule-designed-ai-exhibits-druglike-qualities/
+    [5]: https://arxiv.org/pdf/1406.2661.pdf
+    [6]: https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d
+    [7]: https://miro.medium.com/max/792/1*nz9t-D9xYNjxyw3xtzj3aQ.png
+    [8]: https://www.kaggle.com/datasets/kvpratama/pokemon-images-dataset
+    [9]: https://blogs.nvidia.com/blog/2020/12/07/neurips-research-limited-data-gan/
 
 <h2 class="section-heading">Code</h2>
 
