@@ -1,4 +1,4 @@
-I"â<h2>Introduction</h2>
+I"cã<h2>Introduction</h2>
 <blockquote>
 
 </blockquote>
@@ -180,15 +180,15 @@ The discriminator is a CNN model, whereas the generator is a deconvolutional neu
 <p><i><b>Importing all relevant modules for loading 
 and transforming the data for the model</b></i></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span> 
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">torchvision.utils</span> <span class="kn">import</span> <span class="n">save_image</span>
-<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="n">transforms</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span> 
+<span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="n">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="n">skimage</span> <span class="kn">import</span> <span class="n">io</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="n">torchvision.utils</span> <span class="kn">import</span> <span class="n">save_image</span>
+<span class="kn">import</span> <span class="n">torchvision.transforms</span> <span class="k">as</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="n">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
 </code></pre></div></div>
 
 <p><i><b>Created a class to load the data in
@@ -196,40 +196,40 @@ and defined a few helper functions.</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PokeData</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="c1"># Initializing the variables  
-</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">filenames</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">root_dir</span> <span class="o">=</span> <span class="n">root_dir</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">filenames</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">root_dir</span> <span class="o">=</span> <span class="n">root_dir</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
     
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>      
         <span class="c1"># returns the size of the dataset
-</span>        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">filenames</span><span class="p">)</span>
+</span>        <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">filenames</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span> 
         <span class="c1"># loads in the images by joining the directory with the file names
 </span>        <span class="c1"># in the dataframe
-</span>        <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">root_dir</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">filenames</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+</span>        <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">filenames</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">transform</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">transform</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="n">img</span>
     
     <span class="c1"># function to check if the dataset has loaded in properly
 </span>    <span class="k">def</span> <span class="nf">show_img</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):</span>
             <span class="n">sample</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
-            <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Sample #{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-            <span class="n">ax</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">'off'</span><span class="p">)</span>
-            <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+            <span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Sample #{}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">'</span><span class="s">off</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
                 <span class="k">break</span>
     
     <span class="c1"># calculates the mean and standard deviation 
@@ -239,8 +239,8 @@ and defined a few helper functions.</b></i></p>
 </span>        <span class="n">channels_sum</span><span class="p">,</span> <span class="n">channels_squared_sum</span><span class="p">,</span> <span class="n">num_batches</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
         <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
-            <span class="n">channels_sum</span> <span class="o">+=</span> <span class="n">torch</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-            <span class="n">channels_squared_sum</span> <span class="o">+=</span> <span class="n">torch</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">channels_sum</span> <span class="o">+=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">channels_squared_sum</span> <span class="o">+=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
             <span class="n">num_batches</span> <span class="o">+=</span> <span class="mi">1</span>
     
         <span class="n">mean</span> <span class="o">=</span> <span class="n">channels_sum</span><span class="o">/</span><span class="n">num_batches</span>
@@ -251,47 +251,47 @@ and defined a few helper functions.</b></i></p>
     <span class="c1"># creates a new folder and stores all the 
 </span>    <span class="c1"># augmented photos in that folder
 </span>    <span class="k">def</span> <span class="nf">data_augmentation</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">augmented_dir</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span> 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">augmented_dir</span><span class="p">):</span>
-            <span class="n">os</span><span class="p">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">augmented_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">augmented_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="p">.</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">augmented_dir</span><span class="p">)</span>
             <span class="n">img_num</span> <span class="o">=</span> <span class="mi">820</span>
-            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
-                    <span class="n">save_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">augmented_dir</span><span class="o">+</span><span class="s">"/"</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">img_num</span><span class="p">)</span><span class="o">+</span><span class="s">'.png'</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+                    <span class="nf">save_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">augmented_dir</span><span class="o">+</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">img_num</span><span class="p">)</span><span class="o">+</span><span class="sh">'</span><span class="s">.png</span><span class="sh">'</span><span class="p">)</span>
                     <span class="n">img_num</span> <span class="o">+=</span> <span class="mi">1</span> 
 </code></pre></div></div>
 
 <p><i><b>Selected a few filters<br />  
 to apply on the dataset.</b></i></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">.</span><span class="n">Compose</span><span class="p">([</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">ToPILImage</span><span class="p">(),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">RandomHorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">ColorJitter</span><span class="p">(</span><span class="n">brightness</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">contrast</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">RandomVerticalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">RandomSolarize</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
-    <span class="n">transforms</span><span class="p">.</span><span class="n">ToTensor</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">.</span><span class="nc">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">ToPILImage</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">RandomHorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">ColorJitter</span><span class="p">(</span><span class="n">brightness</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">contrast</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">RandomVerticalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">RandomSolarize</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">RandomRotation</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="nc">ToTensor</span><span class="p">()</span>
     <span class="p">])</span>
 </code></pre></div></div>
 <p><i><b>Loaded the data; the</b></i> <code>show_images</code> <i><b>variable is
 used to check if the data was loaded in properly.</b></i></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show_images</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">csv_file</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show_images</span> <span class="o">=</span> <span class="nc">PokeData</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">csv_file</span><span class="p">,</span>
                             <span class="n">root_dir</span><span class="o">=</span><span class="n">root_dir</span><span class="p">)</span>
 
-<span class="n">pokemon_dataset</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">csv_file</span><span class="p">,</span>
+<span class="n">pokemon_dataset</span> <span class="o">=</span> <span class="nc">PokeData</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">csv_file</span><span class="p">,</span>
                             <span class="n">root_dir</span><span class="o">=</span><span class="n">aug_dir</span><span class="p">,</span>
                             <span class="n">transform</span><span class="o">=</span><span class="n">my_transforms</span><span class="p">)</span>
 
-<span class="n">pokemon_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">pokemon_dataset</span><span class="p">,</span>
+<span class="n">pokemon_dataloader</span> <span class="o">=</span> <span class="nc">DataLoader</span><span class="p">(</span><span class="n">pokemon_dataset</span><span class="p">,</span>
                                 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 
-<span class="n">show_imgs</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">.</span><span class="n">show_img</span><span class="p">(</span><span class="n">show_images</span><span class="p">)</span>
+<span class="n">show_imgs</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">.</span><span class="nf">show_img</span><span class="p">(</span><span class="n">show_images</span><span class="p">)</span>
 
-<span class="n">augmented_data_batchs</span> <span class="o">=</span> <span class="s">"archive/aug_batches"</span>
-<span class="n">aug_data</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">.</span><span class="n">data_augmentation</span><span class="p">(</span><span class="n">pokemon_dataset</span><span class="p">,</span> <span class="n">aug_dir</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">aug_data</span><span class="p">)</span>
+<span class="n">augmented_data_batchs</span> <span class="o">=</span> <span class="sh">"</span><span class="s">archive/aug_batches</span><span class="sh">"</span>
+<span class="n">aug_data</span> <span class="o">=</span> <span class="n">PokeData</span><span class="p">.</span><span class="nf">data_augmentation</span><span class="p">(</span><span class="n">pokemon_dataset</span><span class="p">,</span> <span class="n">aug_dir</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">aug_data</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>For this project, two model architectures were used; one that accepted 64x64 px images
@@ -301,24 +301,24 @@ are presented below</p>
 <p><i><b>pokeGAN_64x64 Discriminator</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">disc</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">disc</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
             <span class="c1"># Input: N x channels_img x 64 x 64
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span>
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span>
                 <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">),</span> <span class="c1"># 32 x 32
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 16 x 16
-</span>            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 8 x 8 
-</span>            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 4 x 4
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="c1">#1x1
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 16 x 16
+</span>            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 8 x 8 
+</span>            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 4 x 4
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="c1">#1x1
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Sigmoid</span><span class="p">()</span>
         <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">kernel_size</span><span class="p">,</span>
@@ -326,33 +326,33 @@ are presented below</p>
                 <span class="n">padding</span><span class="p">,</span>
                 <span class="n">bias</span><span class="o">=</span><span class="bp">False</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
         <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">disc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">disc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><i><b>pokeGAN_64x64 Generator</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_g</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_g</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ConvTranspose2d</span><span class="p">(</span>
                 <span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">Tanh</span><span class="p">(),</span> <span class="c1">#Will produce an output between [-1, 1]
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Tanh</span><span class="p">(),</span> <span class="c1">#Will produce an output between [-1, 1]
 </span>        <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span> 
-            <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span> 
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ConvTranspose2d</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">kernel_size</span><span class="p">,</span>
@@ -360,35 +360,35 @@ are presented below</p>
                 <span class="n">padding</span><span class="p">,</span>
                 <span class="n">bias</span><span class="o">=</span><span class="bp">False</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">(),</span>
         <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">gen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">gen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><i><b>pokeGAN_128x128 Discriminator</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">disc</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">disc</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
             <span class="c1"># Input: N x channels_img x 128 x 128
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span>
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span>
                 <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_d</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">),</span> <span class="c1"># 64 x 64
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 32 x 32
-</span>            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 16 x 16 
-</span>            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 8 x 8
-</span>            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 4 x 4
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="c1">#1x1
-</span>            <span class="n">nn</span><span class="p">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 32 x 32
+</span>            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 16 x 16 
+</span>            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 8 x 8
+</span>            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_d</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># 4 x 4
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">features_d</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="c1">#1x1
+</span>            <span class="n">nn</span><span class="p">.</span><span class="nc">Sigmoid</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">kernel_size</span><span class="p">,</span>
@@ -396,33 +396,33 @@ are presented below</p>
                 <span class="n">padding</span><span class="p">,</span>
                 <span class="n">bias</span><span class="o">=</span><span class="bp">False</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
         <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">disc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">disc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div></div>
 <p><i><b>pokeGAN_128x128 Generator</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_g</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_g</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">features_g</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">_block</span><span class="p">(</span><span class="n">features_g</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">features_g</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ConvTranspose2d</span><span class="p">(</span>
                 <span class="n">features_g</span><span class="p">,</span> <span class="n">channels_img</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">Tanh</span><span class="p">(),</span> <span class="c1">#Will produce an output between [-1, 1]
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Tanh</span><span class="p">(),</span> <span class="c1">#Will produce an output between [-1, 1]
 </span>        <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span> 
-            <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span> 
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ConvTranspose2d</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">kernel_size</span><span class="p">,</span>
@@ -430,20 +430,20 @@ are presented below</p>
                 <span class="n">padding</span><span class="p">,</span>
                 <span class="n">bias</span><span class="o">=</span><span class="bp">False</span>
             <span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">(),</span>
         <span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">gen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">gen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><i><b>A function to initialize the weights of the models.</b></i></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="n">modules</span><span class="p">():</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">)):</span>
-            <span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">weight</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="nf">modules</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Conv2d</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">ConvTranspose2d</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">BatchNorm2d</span><span class="p">)):</span>
+            <span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="nf">normal_</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">weight</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><i><b>And a test function to check if the models are working properly.</b></i></p>
@@ -451,17 +451,17 @@ are presented below</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
     <span class="n">N</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> 
     <span class="n">z_dim</span> <span class="o">=</span> <span class="mi">128</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
-    <span class="n">disc</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-    <span class="n">initialize_weights</span><span class="p">(</span><span class="n">disc</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">disc</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">gen</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-    <span class="n">initialize_weights</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">randn</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">assert</span> <span class="n">gen</span><span class="p">(</span><span class="n">z</span><span class="p">).</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Success"</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+    <span class="n">disc</span> <span class="o">=</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="nf">initialize_weights</span><span class="p">(</span><span class="n">disc</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nf">disc</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">gen</span> <span class="o">=</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">z_dim</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="nf">initialize_weights</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="nf">gen</span><span class="p">(</span><span class="n">z</span><span class="p">).</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Success</span><span class="sh">"</span><span class="p">)</span>
 
 
-<span class="n">test</span><span class="p">()</span>
+<span class="nf">test</span><span class="p">()</span>
 </code></pre></div></div>
 :ET
