@@ -3,7 +3,7 @@ layout: post
 title: "Elevating Credit Card Approvals: A Dual Approach with SVM and KNN Models for Eligibility Assessment"
 subtitle: "An exploration of SVM and KNN models to determine the ideal credit card candidacy"
 # date: 2022-07-15 23:45:13 -0400
-background: ''
+# background: 
 ---
 
 ## SVM Classifier - Linear 
@@ -12,18 +12,19 @@ The main goal of this project is to develop a good SVM classifier using the cred
 
 In the case of this exercise, the value $\lambda$, will here after be referred to as `C`. The code presented below will demonstrate the methodology utilized to determine the best value for this hyperparameter.    
 
-```{r warning=FALSE}
+```r
 # Importing the necessary library for analysis
 library(kernlab)
 
 # Setting up the working directory data
 getwd()
 setwd("../data 2.2")
+
 ```
 
 Having imported the necessary libraries and setup the working directory, the data set required for this analysis was called and stored within the `credit_card_dataH` variable. The data set was also converted into a matrix datatype as this is the only datatype accepted by the `ksvm()` function.     
 
-```{r}
+```r
 ### initializing a variable to store the data
 credit_card_dataH <-
   as.matrix(read.delim("credit_card_data-headers.txt"))
@@ -40,7 +41,7 @@ The accuracy of the model for each of the `C` values was calculated by dividing 
 
 The results for these hyperparameters are presented below; using the following code. 
 
-```{r warning=FALSE}
+```r
 # for C = 1
 creditcard_model_1 <-
   ksvm(
@@ -100,7 +101,7 @@ A **for** **loop** was devised, that grabbed an element from a list of `C` value
 
 The code for the above explanation is presented below: 
 
-```{r warning=FALSE}
+```r
 # defining a list of C values, to be plugged 
 # into the C parameter, within the ksvm() function. 
 C_list = as.list(c(-8:8))
@@ -148,7 +149,7 @@ Based on the results observed in the `results_df` data frame, the same accuracy 
 
 Therefore, using this value (C = 1), the coefficients $a_{0}$ and $a_{1}...a_{m}$ will be calculated using the code presented below:
 
-```{r}
+```r
 # running back the model with the most accurate C value
 # to obtain the coefficients for the SVM model
 creditcard_model <-
@@ -188,7 +189,7 @@ What differentiates the model in this scenario, is changing the value of a singl
 
 First, the results for the `rbfdot` kernel will be presented. Please note that the code used here is same as the code presented in the previous question
 
-```{r}
+```r
 
 ### initializing a variable to store the data
 credit_card_dataH <-
@@ -238,7 +239,7 @@ results_df_rbfdot
 
 The results for the `polydot` kernel are now presented below 
 
-```{r}
+```r
 
 ### initializing a variable to store the data
 credit_card_dataH <-
@@ -299,7 +300,7 @@ In order to obtain the best k value, a **nested** **for** **loop** was devised. 
 
 The accuracy of the knn model is determined using the same accuracy formula used in question 2.2.1, wherein the accuracy of the knn model is determined dividing by using the **sum** of the total number of correctly classified values by the knn model over the total number of correctly classified observations.  
 
-```{r warning=FALSE}
+```r
 # Importing the necessary libraries for analysis
 library(kknn)
 library(tidyverse)
@@ -310,7 +311,7 @@ setwd("../data 2.2")
 ```
 
 
-```{r}
+```r
 # reading in the data set into a new data frame
 creditcard_df <-
   read.table(file = "credit_card_data.txt", sep = "\t")
@@ -329,7 +330,7 @@ where, the continuous value is rounded off to 0 or 1 by a threshold factor of 0.
 
 Having obtained the best threshold value, the accuracy of the knn model for each k-value was then calculated, and appended to the `knn_results_df` data frame to view the final results. 
 
-```{r}
+```r
 # initialzing an empty data frame
 knn_results_df = data.frame()
 
@@ -367,7 +368,7 @@ knn_results_df
 
 The k-value with the highest accuracy is filtered and presented in the table below: 
 
-```{r}
+```r
 knn_results_df %>% slice_max(accuracy_value)
 ```
 
@@ -381,7 +382,7 @@ The rationale behind picking the value 12, and not 15 is because, when identifyi
 
 Table 1. The table below shows the threshold_values and the corresponding k_values that yielded the highest accuracy.   
 
-```{r echo=FALSE, warning=FALSE}
+```r
 threshold_value <- c(seq(0.1:1.0, by = 0.1))
 k_value <-
   c(
