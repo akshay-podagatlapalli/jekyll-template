@@ -8,9 +8,9 @@ subtitle: "An exploration of SVM and KNN models to determine the ideal credit ca
 
 ## SVM Classifier - Linear 
 
-The main goal of this project is to develop a good SVM classifier using the credit_card_data.txt data set. In order to identify the best performing SVM classifier, the key hyperparameter: $\lambda$, has to be identified. 
+The main goal of this project is to develop a good SVM classifier using the credit_card_data.txt data set. In order to identify the best performing SVM classifier, the key hyperparameter: $$\lambda$$, has to be identified. 
 
-In the case of this exercise, the value $\lambda$, will here after be referred to as `C`. The code presented below will demonstrate the methodology utilized to determine the best value for this hyperparameter.    
+In the case of this exercise, the value $$\lambda$$, will here after be referred to as `C`. The code presented below will demonstrate the methodology utilized to determine the best value for this hyperparameter.    
 
 ```r
 # Importing the necessary library for analysis
@@ -95,7 +95,7 @@ print(paste0("Accuracy = ", round(acc_value_1, 6)*100, "% when C = 1"))
 print(paste0("Accuracy = ", round(acc_value_2, 6)*100, "% when C = 10"))
 print(paste0("Accuracy = ", round(acc_value_3, 6)*100, "% when C = 100"))
 ```
-Since the accuracy value is the same for all 3 different `C` values (1, 10, 100), another approach was taken to test if an even higher accuracy could be achieved. Therefore, the `C` values at each order of magnitude in the range from $1e^{-8}$ to $1e^{8}$ were used to determine `C` value that yielded the best accuracy from the ksvm model. 
+Since the accuracy value is the same for all 3 different `C` values (1, 10, 100), another approach was taken to test if an even higher accuracy could be achieved. Therefore, the `C` values at each order of magnitude in the range from $$1e^{-8}$$ to $$1e^{8}$$ were used to determine `C` value that yielded the best accuracy from the ksvm model. 
 
 A **for** **loop** was devised, that grabbed an element from a list of `C` values from the range specified above. After the `ksvm()` function is executed for every `C` value from the list, the `predict()` function is executed to obtain the values predicted by the model. These predicted values are then plugged into the accuracy formula `acc_value` to determine the performance of the model at each of the `C` values. The `C` value and the associated accuracy value are then subsequently appended to an empty data frame to view the values after. 
 
@@ -145,9 +145,9 @@ results_df
 ```
 
 
-Based on the results observed in the `results_df` data frame, the same accuracy value is obtained for `C` values in the range from $1e^{-2}$ to $1e^{2}$. As such, the median value of this range $1e^{0}$, or C = 1 is determined to be the best value. 
+Based on the results observed in the `results_df` data frame, the same accuracy value is obtained for `C` values in the range from $$1e^{-2}$$ to $$1e^{2}$$. As such, the median value of this range $$1e^{0}$$, or C = 1 is determined to be the best value. 
 
-Therefore, using this value (C = 1), the coefficients $a_{0}$ and $a_{1}...a_{m}$ will be calculated using the code presented below:
+Therefore, using this value (C = 1), the coefficients $$a_{0}$$ and $$a_{1}...a_{m}$$ will be calculated using the code presented below:
 
 ```r
 # running back the model with the most accurate C value
@@ -177,9 +177,12 @@ a0
 
 Based on the coefficients obtained from the calculations above, the best performing SVM classifier's equation is:
 
-$0 = -0.00110266416005534 \cdot A_{1} -0.000898053885177352 \cdot A_{2} -0.00160745568843068 \cdot A_{3} +0.00290416995926498 \cdot A_{8} +1.00473634563239 \cdot A_{9} -0.00298521097400601 \cdot A_{10} -0.000203517947504475 \cdot A_{11} -0.000550480305885316 \cdot A_{12} -0.0012519186641109 \cdot A_{14} +0.1064404601442\cdot A_{15} -0.0814838195688614 \cdot A_{0}$
+$$0 = -0.00110266416005534 \cdot A_{1} -0.000898053885177352 \cdot A_{2} -0.00160745568843068 \cdot$$ 
+$$ A_{3} +0.00290416995926498 \cdot A_{8} +1.00473634563239 \cdot A_{9} -0.00298521097400601 \cdot$$ 
+$$ A_{10} -0.000203517947504475 \cdot A_{11} -0.000550480305885316 \cdot A_{12} -0.0012519186641109 \cdot$$ 
+$$ A_{14} +0.1064404601442\cdot A_{15} -0.0814838195688614 \cdot A_{0}$$
 
-with a prediction accuracy of: **$86.3914\%$**.
+with a prediction accuracy of: **86.3914%**.
 
 ## SVM Classifier - Non Linear
 
@@ -287,7 +290,7 @@ colnames(results_df_polydot) <- c("C_value", "accuracy_value (%)")
 results_df_polydot
 ```
 
-Based on the results observed for the models above, the accuracy values starting from $1e^{2}$ and upwards must be treated with caution since the entire data set was used for training the model, which would very likely result in the model overfitting to all the data points, thus leading to such high accuracy values. 
+Based on the results observed for the models above, the accuracy values starting from $$1e^{2}$$ and upwards must be treated with caution since the entire data set was used for training the model, which would very likely result in the model overfitting to all the data points, thus leading to such high accuracy values. 
 
 The best way to further determine the accuracy of the non-linear models here would be to split the data set into a training/validation/test data sets.
 

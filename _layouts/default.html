@@ -4,18 +4,28 @@
 
 {% include head.html %}
 
-<body>
+<head>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 
-  {% include navbar.html %}
+  <body>
 
-  {{ content }}
+    {% include navbar.html %}
 
-  {% include footer.html %}
+    <script type="text/javascript" src="{{ site.baseurl }}/_includes/mathjax-config.js"></script>
 
-  {% include scripts.html %}
 
-  {% include google-analytics.html %}
+    {{ content }}
 
-</body>
+    {% include footer.html %}
+
+    {% include scripts.html %}
+
+    {% include google-analytics.html %}
+
+  </body>
+
+</head>
 
 </html>
