@@ -3,7 +3,7 @@ layout: post
 title: "Who's That Pokémon?"
 subtitle: "Training a Generative Adversarial Network (GAN) to produce never before seen Pokémon"
 # date: 2022-07-15 23:45:13 -0400
-background: '../img/posts/1.png'
+background: '../img/post/post1/1.png'
 ---
 
 <h2>Introduction</h2>>
