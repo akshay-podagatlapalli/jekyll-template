@@ -3,7 +3,7 @@ layout: post
 title: "Elevating Credit Card Approvals: A Dual Approach with SVM and KNN Models for Eligibility Assessment"
 subtitle: "An exploration of SVM and KNN models to determine the ideal credit card candidacy"
 # date: 2022-07-15 23:45:13 -0400
-# background: 
+background: '/img/post/post2/header_img.png'
 ---
 
 ## SVM Classifier - Linear 
